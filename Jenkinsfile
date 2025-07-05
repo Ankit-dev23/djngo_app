@@ -81,7 +81,7 @@ pipeline {
 
         stage ("Publishing Docker Images into Public Registry") {
             steps {
-                sh 'docker push ishunrzb09/${JOB_NAME}'
+                sh 'docker push ishunrzb09/${JOB_NAME}:latest'
             }
         }
 
