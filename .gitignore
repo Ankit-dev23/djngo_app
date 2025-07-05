@@ -212,5 +212,5 @@ __marimo__/
 *.pot
 *.pyc
 __pycache__
-./ankit_rest_api/db.sqlite3
+./djngo_app/db.sqlite3
 media
