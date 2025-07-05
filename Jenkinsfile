@@ -81,32 +81,15 @@ pipeline {
 
         stage ("Publishing Docker Images into Public Registry") {
             steps {
-                sh 'docker push ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
+                sh 'docker push ishunrzb09/${JOB_NAME}'
             }
         }
 
-        // stage ("Removing created images from local system") {
-        //     steps {
-        //         sh 'docker rmi -f ishunrzb09/${JOB_NAME}:V_${BUILD_NUMBER}'
-        //     }
-        // }
+        stage ("deploying Application into K8s cluster") {
+            steps {
+                sh 'kubectl apply -f k8s/.'
+            }
+        }
 
-        // stage ("Pulling created Docker image from remote server") {
-        //     steps {
-        //         sh 'docker pull ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
-        //     }
-        // }
-
-        // stage ("Removing Old Container") {
-        //     steps {
-        //         sh 'docker rm -f medical_container'
-        //     }
-        // }
-
-        // stage ("Spinning Container from downloaded image") {
-        //     steps {
-        //         sh 'docker run -itd --name=medical_container -p 8000:8000 ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
-        //     }
-        // }
     }
 }
