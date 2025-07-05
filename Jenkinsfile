@@ -69,7 +69,7 @@ pipeline {
 
         stage ("Building Docker image") {
             steps {
-                sh 'docker build -t ishunrzb09/${JOB_NAME}:${BUILD_NUMBER} .' 
+                sh 'docker build -t ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}:latest .' 
             }
         }
 
