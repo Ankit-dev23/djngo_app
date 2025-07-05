@@ -1,6 +1,8 @@
 asgiref==3.8.1
+backports.zoneinfo==0.2.1
 black==24.8.0
 click==8.1.8
+coverage==7.4.1
 django==4.2.23
 isort==5.13.2
 mypy-extensions==1.1.0
