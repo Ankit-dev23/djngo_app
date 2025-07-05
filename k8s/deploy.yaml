@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: ankit-django
-        image: ishunrzb09/ankit_django:latest
+        image: ishunrzb09/ankit_django_project:latest
         ports:
         - containerPort: 8000
