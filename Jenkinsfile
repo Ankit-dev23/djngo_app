@@ -53,7 +53,7 @@ pipeline {
             steps {
                 sh """#!/bin/bash
 		        source /var/lib/jenkins/envs/${JOB_NAME}/bin/activate
-		        python medical_test/manage.py test
+		        python manage.py test
 		        """
             }
         }
@@ -62,7 +62,7 @@ pipeline {
             steps {
                 sh """#!/bin/bash
 		        source /var/lib/jenkins/envs/${JOB_NAME}/bin/activate
-		        coverage run medical_test/manage.py test -v 2 && coverage report --fail-under=90
+		        coverage run manage.py test -v 2 && coverage report --fail-under=90
 		        """
             }
         }
@@ -87,26 +87,26 @@ pipeline {
 
         stage ("Removing created images from local system") {
             steps {
-                sh 'docker rmi -f ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
+                sh 'docker rmi -f ishunrzb09/${JOB_NAME}:V_${BUILD_NUMBER}'
             }
         }
 
-        stage ("Pulling created Docker image from remote server") {
-            steps {
-                sh 'docker pull ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
-            }
-        }
+        // stage ("Pulling created Docker image from remote server") {
+        //     steps {
+        //         sh 'docker pull ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
+        //     }
+        // }
 
-        stage ("Removing Old Container") {
-            steps {
-                sh 'docker rm -f medical_container'
-            }
-        }
+        // stage ("Removing Old Container") {
+        //     steps {
+        //         sh 'docker rm -f medical_container'
+        //     }
+        // }
 
-        stage ("Spinning Container from downloaded image") {
-            steps {
-                sh 'docker run -itd --name=medical_container -p 8000:8000 ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
-            }
-        }
+        // stage ("Spinning Container from downloaded image") {
+        //     steps {
+        //         sh 'docker run -itd --name=medical_container -p 8000:8000 ishunrzb09/${JOB_NAME}:${BUILD_NUMBER}'
+        //     }
+        // }
     }
 }
