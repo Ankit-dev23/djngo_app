@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ankit-django
+  labels:
+    app: ankit-django
+  namespace: ankit
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ankit-django
+  template:
+    metadata:
+      labels:
+        app: ankit-django
+    spec:
+      containers:
+      - name: ankit-django
+        image: ishunrzb09/ankit_django:v2
+        ports:
+        - containerPort: 8000
